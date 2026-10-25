@@ -1,0 +1,20 @@
+{
+  "id": "show-analytical-model",
+  "assembly": "ArKrPlugFR.Plugins.AnalyticalVisibility.dll",
+  "entryType": "ArKrPlugFR.Plugins.AnalyticalVisibility.ShowAnalyticalModelCommand",
+  "titles": {
+    "en": "Show the analytical model",
+    "ru": "Показать аналитическую модель"
+  },
+  "descriptions": {
+    "en": "Shows the analytical model of the bearing structures again in the model views, returning every element the hiding took away.",
+    "ru": "Возвращает аналитическую модель несущих конструкций на виды модели, показывая всё, что было скрыто."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Loads",
+    "buttonSize": "large",
+    "order": 30
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

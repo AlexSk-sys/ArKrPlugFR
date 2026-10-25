@@ -1,0 +1,20 @@
+{
+  "id": "refresh-annotations",
+  "assembly": "ArKrPlugFR.Plugins.RefreshAnnotations.dll",
+  "entryType": "ArKrPlugFR.Plugins.RefreshAnnotations.RefreshAnnotationsCommand",
+  "titles": {
+    "en": "Refresh annotations",
+    "ru": "Обновить аннотации"
+  },
+  "descriptions": {
+    "en": "Makes the tags of the active view recompute their text: with a selection only its tags are refreshed, otherwise the whole view; every tag ends where it started.",
+    "ru": "Заставляет марки активного вида пересчитать текст: с выделением обновляются марки выделенных элементов, без него — весь вид; каждая марка остаётся на своём месте."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Annotations",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

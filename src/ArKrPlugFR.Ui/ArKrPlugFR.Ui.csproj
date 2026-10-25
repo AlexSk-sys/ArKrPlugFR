@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>ArKrPlugFR.Ui</RootNamespace>
+    <AssemblyName>ArKrPlugFR.Ui</AssemblyName>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!--
+    WPF on .NET Framework 4.8, which is the runtime of Revit 2020-2024. The
+    project is a library: the host application composes the windows, so the UI
+    project has no entry point.
+
+    The WindowsBase / PresentationCore / PresentationFramework references are
+    supplied by the WPF SDK when UseWPF is enabled.
+  -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArKrPlugFR.Core\ArKrPlugFR.Core.csproj" />
+  </ItemGroup>
+
+</Project>

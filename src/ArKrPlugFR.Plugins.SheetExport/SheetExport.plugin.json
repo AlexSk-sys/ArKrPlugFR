@@ -1,0 +1,20 @@
+{
+  "id": "sheet-export",
+  "assembly": "ArKrPlugFR.Plugins.SheetExport.dll",
+  "entryType": "ArKrPlugFR.Plugins.SheetExport.SheetExportCommand",
+  "titles": {
+    "en": "Sheets to PDF",
+    "ru": "Листы в PDF"
+  },
+  "descriptions": {
+    "en": "Exports the ticked sheets as one PDF file per sheet, named after the sheet, into a folder you choose, and reports every file it produced.",
+    "ru": "Экспортирует отмеченные листы по одному PDF-файлу на лист, с именем по листу, в выбранную папку, и сообщает о каждом созданном файле."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Sheets",
+    "buttonSize": "large",
+    "order": 30
+  },
+  "supportedRevitVersions": [ "2022", "2024" ]
+}

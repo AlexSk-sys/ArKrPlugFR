@@ -1,0 +1,20 @@
+{
+  "id": "unjoin-columns",
+  "assembly": "ArKrPlugFR.Plugins.UnjoinElements.dll",
+  "entryType": "ArKrPlugFR.Plugins.UnjoinElements.UnjoinColumnsCommand",
+  "titles": {
+    "en": "Unjoin columns",
+    "ru": "Отсоединить колонны"
+  },
+  "descriptions": {
+    "en": "Removes the cuts that columns make in the selected walls.",
+    "ru": "Убирает вырезы колонн в выделенных стенах."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Walls",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

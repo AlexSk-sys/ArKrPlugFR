@@ -1,0 +1,20 @@
+{
+  "id": "mark-structures",
+  "assembly": "ArKrPlugFR.Plugins.MarkStructures.dll",
+  "entryType": "ArKrPlugFR.Plugins.MarkStructures.MarkStructuresCommand",
+  "titles": {
+    "en": "Mark structures by their kind",
+    "ru": "Промаркировать конструкции по виду"
+  },
+  "descriptions": {
+    "en": "Decides the kind of every column, beam, floor, wall, foundation and pile from its category and shape, and writes the configured mark — a code per kind plus a suffix for the material family — into the mark parameter.",
+    "ru": "Определяет вид каждой колонны, балки, перекрытия, стены, фундамента и сваи по категории и форме и записывает в параметр «Марка» настроенную марку — код вида плюс суффикс материала."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Annotations",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

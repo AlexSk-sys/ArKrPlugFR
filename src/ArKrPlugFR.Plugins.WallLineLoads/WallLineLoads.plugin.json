@@ -1,0 +1,20 @@
+{
+  "id": "wall-line-loads",
+  "assembly": "ArKrPlugFR.Plugins.WallLineLoads.dll",
+  "entryType": "ArKrPlugFR.Plugins.WallLineLoads.WallLineLoadsCommand",
+  "titles": {
+    "en": "Line loads on walls",
+    "ru": "Линейные нагрузки на стены"
+  },
+  "descriptions": {
+    "en": "Puts the weight of the chosen walls onto the slabs as line loads at the bottom of every wall — a force, a moment, a load case and an optional comment — for the calculation model.",
+    "ru": "Прикладывает вес выбранных стен к плитам линейными нагрузками в низу каждой стены — сила, момент, вариант нагружений и необязательный комментарий — для расчётной модели."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Loads",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

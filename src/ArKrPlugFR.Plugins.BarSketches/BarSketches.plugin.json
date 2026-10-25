@@ -1,0 +1,20 @@
+{
+  "id": "bar-sketches",
+  "assembly": "ArKrPlugFR.Plugins.BarSketches.dll",
+  "entryType": "ArKrPlugFR.Plugins.BarSketches.BarSketchesCommand",
+  "titles": {
+    "en": "Sketch sheets of bars",
+    "ru": "Листы-эскизы стержней"
+  },
+  "descriptions": {
+    "en": "Makes a sheet per picked bar: a view cropped to the bar and a note with its shape, diameter, length and mark.",
+    "ru": "Создаёт лист на каждый выбранный стержень: вид, обрезанный по стержню, и надпись с его формой, диаметром, длиной и маркой."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Rebar",
+    "buttonSize": "large",
+    "order": 50
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

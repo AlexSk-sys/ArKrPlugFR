@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>ArKrPlugFR.Core</RootNamespace>
+    <AssemblyName>ArKrPlugFR.Core</AssemblyName>
+  </PropertyGroup>
+
+  <!--
+    Deliberately references no Revit API. Everything in this project is plain
+    .NET and therefore unit-testable without Revit: units, geometry helpers,
+    rule evaluation, report building.
+
+    Json.NET is a single assembly with no transitive dependencies, which keeps
+    the deployed plugin folder small; the whole Revit add-in ecosystem already
+    uses it, so it is a familiar choice for anyone reading this code.
+  -->
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+</Project>

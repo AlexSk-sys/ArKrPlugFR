@@ -1,0 +1,20 @@
+{
+  "id": "area-rebar-marks",
+  "assembly": "ArKrPlugFR.Plugins.AreaRebarMarks.dll",
+  "entryType": "ArKrPlugFR.Plugins.AreaRebarMarks.AreaRebarMarksCommand",
+  "titles": {
+    "en": "Fill area reinforcement values onto its bars",
+    "ru": "Перенести значения армирования по площади на стержни"
+  },
+  "descriptions": {
+    "en": "Writes a chosen value of every area reinforcement into the same parameter of the bars that belong to it, so the schedules of the bars fill themselves.",
+    "ru": "Записывает выбранное значение каждого армирования по площади в тот же параметр стержней, которые к нему относятся, чтобы ведомости стержней заполнялись сами."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Rebar",
+    "buttonSize": "large",
+    "order": 30
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

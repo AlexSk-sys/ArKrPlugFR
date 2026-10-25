@@ -1,0 +1,20 @@
+{
+  "id": "hole-cutting",
+  "assembly": "ArKrPlugFR.Plugins.HoleCuttingPlugin.dll",
+  "entryType": "ArKrPlugFR.Plugins.HoleCuttingPlugin.HoleCuttingCommand",
+  "titles": {
+    "en": "Cut an opening",
+    "ru": "Вырезать отверстие"
+  },
+  "descriptions": {
+    "en": "Cuts a rectangular opening in a wall where a duct, pipe, cable tray or conduit crosses it, with clearance on every side.",
+    "ru": "Вырезает прямоугольное отверстие в стене в месте пересечения с воздуховодом, трубой, кабельным лотком или кабелепроводом, с технологическим запасом со всех сторон."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Openings",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

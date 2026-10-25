@@ -1,0 +1,20 @@
+{
+  "id": "analytical-alignment",
+  "assembly": "ArKrPlugFR.Plugins.AnalyticalAlignment.dll",
+  "entryType": "ArKrPlugFR.Plugins.AnalyticalAlignment.AnalyticalAlignmentCommand",
+  "titles": {
+    "en": "Align the analytical model",
+    "ru": "Выравнивание аналитической модели"
+  },
+  "descriptions": {
+    "en": "Brings analytical members to the height of a picked target member and analytical nodes onto its line, dragging the members of a node with it.",
+    "ru": "Приводит аналитические элементы к высоте выбранного целевого элемента, а узлы — на его линию, подтягивая за узлом концы его стержней."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Loads",
+    "buttonSize": "large",
+    "order": 40
+  },
+  "supportedRevitVersions": [ "2022", "2024" ]
+}

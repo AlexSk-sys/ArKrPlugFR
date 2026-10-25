@@ -1,0 +1,20 @@
+{
+  "id": "view-template-transfer",
+  "assembly": "ArKrPlugFR.Plugins.ViewTemplateTransfer.dll",
+  "entryType": "ArKrPlugFR.Plugins.ViewTemplateTransfer.ViewTemplateTransferCommand",
+  "titles": {
+    "en": "Transfer views",
+    "ru": "Перенос видов"
+  },
+  "descriptions": {
+    "en": "Copies the views and view templates of this project into another project that is open, grouped so whole branches can be ticked at once.",
+    "ru": "Копирует виды и шаблоны видов этого проекта в другой открытый проект, группируя их так, что можно отметить целые ветки одним нажатием."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Views",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

@@ -1,0 +1,231 @@
+<Window x:Class="ArKrPlugFR.Plugins.SheetDuplicator.SheetDuplicatorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding WindowTitle}"
+        Width="980"
+        Height="640"
+        MinWidth="760"
+        MinHeight="480"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="{DynamicResource SurfaceBrush}"
+        Foreground="{DynamicResource TextPrimaryBrush}"
+        FontFamily="{DynamicResource UiFontFamily}"
+        FontSize="{DynamicResource BodyFontSize}"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ArKrPlugFR.Ui;component/Theme/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+
+            <Style x:Key="SheetRow" TargetType="ListBoxItem">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+                <Setter Property="Padding" Value="6,4" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource AccentMutedBrush}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!-- The count buttons are small square steppers, not full buttons. -->
+            <Style x:Key="CountButton" TargetType="Button" BasedOn="{StaticResource SecondaryButton}">
+                <Setter Property="MinWidth" Value="26" />
+                <Setter Property="Padding" Value="6,2" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,12">
+            <TextBlock Style="{DynamicResource TitleText}" Text="{Binding WindowTitle}" />
+            <TextBlock Style="{DynamicResource CaptionText}"
+                       Margin="0,3,0,0"
+                       TextWrapping="Wrap"
+                       Text="{Binding Subtitle}" />
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Left: the sheets of the current project, with a search field. -->
+            <Border Grid.Column="0"
+                    Padding="10"
+                    Background="{DynamicResource SurfaceRaisedBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <DockPanel>
+                    <TextBlock DockPanel.Dock="Top"
+                               Style="{DynamicResource CaptionText}"
+                               Margin="0,0,0,6"
+                               TextTrimming="CharacterEllipsis"
+                               Text="{Binding Text.SheetsCaption}" />
+
+                    <TextBox DockPanel.Dock="Top"
+                             Style="{DynamicResource FieldTextBox}"
+                             Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock DockPanel.Dock="Top"
+                               Margin="0,4,0,8"
+                               Style="{DynamicResource CaptionText}"
+                               TextWrapping="Wrap"
+                               Text="{Binding Text.SearchPlaceholder}" />
+
+                    <ListBox ItemsSource="{Binding VisibleRows}"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Padding="0"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             ItemContainerStyle="{StaticResource SheetRow}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <CheckBox Grid.Column="0"
+                                              VerticalAlignment="Center"
+                                              IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+
+                                    <StackPanel Grid.Column="1"
+                                                Margin="8,0"
+                                                Orientation="Horizontal"
+                                                VerticalAlignment="Center">
+                                        <TextBlock FontWeight="SemiBold"
+                                                   VerticalAlignment="Center"
+                                                   Text="{Binding Number}" />
+                                        <TextBlock Margin="8,0,0,0"
+                                                   VerticalAlignment="Center"
+                                                   TextTrimming="CharacterEllipsis"
+                                                   Text="{Binding Name}" />
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                        <Button Style="{StaticResource CountButton}"
+                                                Content="&#x2212;"
+                                                Click="OnDecreaseClick" />
+                                        <TextBox Width="40"
+                                                 Margin="6,0"
+                                                 TextAlignment="Center"
+                                                 Style="{DynamicResource FieldTextBox}"
+                                                 Text="{Binding CopyCountText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        <Button Style="{StaticResource CountButton}"
+                                                Content="+"
+                                                Click="OnIncreaseClick" />
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+
+            <!-- Right: the switches and the single Duplicate button. -->
+            <Border Grid.Column="2"
+                    VerticalAlignment="Top"
+                    Padding="12"
+                    Background="{DynamicResource SurfaceRaisedBrush}"
+                    BorderBrush="{DynamicResource BorderBrush}"
+                    BorderThickness="1"
+                    CornerRadius="4">
+                <StackPanel>
+                    <TextBlock Style="{DynamicResource CaptionText}"
+                               TextWrapping="Wrap"
+                               Text="{Binding Text.SettingsCaption}" />
+
+                    <TextBlock Margin="0,10,0,0"
+                               Style="{DynamicResource BodyText}"
+                               Text="{Binding Text.OptionGroupCaption}" />
+
+                    <CheckBox Margin="0,6,0,0"
+                              Foreground="{DynamicResource TextPrimaryBrush}"
+                              Content="{Binding Text.OptionViews}"
+                              IsChecked="{Binding CopyViews, Mode=TwoWay}" />
+                    <CheckBox Margin="0,4,0,0"
+                              Foreground="{DynamicResource TextPrimaryBrush}"
+                              Content="{Binding Text.OptionLegends}"
+                              IsChecked="{Binding CopyLegends, Mode=TwoWay}" />
+                    <CheckBox Margin="0,4,0,0"
+                              Foreground="{DynamicResource TextPrimaryBrush}"
+                              Content="{Binding Text.OptionText}"
+                              IsChecked="{Binding CopyText, Mode=TwoWay}" />
+                    <CheckBox Margin="0,4,0,0"
+                              Foreground="{DynamicResource TextPrimaryBrush}"
+                              Content="{Binding Text.OptionImages}"
+                              IsChecked="{Binding CopyImages, Mode=TwoWay}" />
+                    <CheckBox Margin="0,4,0,0"
+                              Foreground="{DynamicResource TextPrimaryBrush}"
+                              Content="{Binding Text.OptionSchedules}"
+                              IsChecked="{Binding CopySchedules, Mode=TwoWay}" />
+                    <CheckBox Margin="0,4,0,0"
+                              Foreground="{DynamicResource TextPrimaryBrush}"
+                              Content="{Binding Text.OptionAnnotations}"
+                              IsChecked="{Binding CopyAnnotations, Mode=TwoWay}" />
+                    <CheckBox Margin="0,4,0,0"
+                              Foreground="{DynamicResource TextPrimaryBrush}"
+                              Content="{Binding Text.OptionParameters}"
+                              IsChecked="{Binding CopyParameters, Mode=TwoWay}" />
+
+                    <Button Margin="0,16,0,0"
+                            HorizontalAlignment="Stretch"
+                            Style="{DynamicResource PrimaryButton}"
+                            Content="{Binding DuplicateButtonText}"
+                            Click="OnDuplicateClick" />
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <!-- The report of the last run, hidden while empty. -->
+        <Border Grid.Row="2"
+                Margin="0,12,0,0"
+                Padding="10"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Visibility="{Binding HasReport, Converter={StaticResource BoolToVisibility}}">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top"
+                           Margin="0,0,0,6"
+                           Style="{DynamicResource CaptionText}"
+                           Text="{Binding ReportCaption}" />
+                <TextBox Style="{DynamicResource ReportTextBox}"
+                         MinHeight="64"
+                         MaxHeight="140"
+                         Text="{Binding Report, Mode=OneWay}" />
+            </DockPanel>
+        </Border>
+
+        <StackPanel Grid.Row="3"
+                    Margin="0,12,0,0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Style="{DynamicResource SecondaryButton}"
+                    Content="{Binding Text.Close}"
+                    IsCancel="True"
+                    Click="OnCloseClick" />
+        </StackPanel>
+    </Grid>
+</Window>

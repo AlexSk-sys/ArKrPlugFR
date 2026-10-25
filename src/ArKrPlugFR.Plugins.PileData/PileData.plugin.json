@@ -1,0 +1,20 @@
+{
+  "id": "pile-data",
+  "assembly": "ArKrPlugFR.Plugins.PileData.dll",
+  "entryType": "ArKrPlugFR.Plugins.PileData.PileDataCommand",
+  "titles": {
+    "en": "Pile data for schedules",
+    "ru": "Данные свай для ведомостей"
+  },
+  "descriptions": {
+    "en": "Numbers the picked piles from the chosen corner and writes the elevation of the raft bottom, the elevation of every pile bottom and the height of the part cut off under the raft.",
+    "ru": "Нумерует выбранные сваи с заданного угла и записывает отметку низа плиты ростверка, отметку низа каждой сваи и высоту срубаемой под ростверком части."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Foundations",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

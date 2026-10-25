@@ -1,0 +1,20 @@
+{
+  "id": "count-by-mark",
+  "assembly": "ArKrPlugFR.Plugins.CountByMark.dll",
+  "entryType": "ArKrPlugFR.Plugins.CountByMark.CountByMarkCommand",
+  "titles": {
+    "en": "Count structures by mark",
+    "ru": "Конструкции по марке"
+  },
+  "descriptions": {
+    "en": "Counts the columns, walls, floors or beams that carry the same mark and writes the number into the number parameter of every bar whose structure mark matches; bars without a match are counted, not written zero.",
+    "ru": "Считает колонны, стены, перекрытия или балки с одинаковой маркой и записывает число в параметр количества каждого стержня, чья метка основы совпадает с маркой; стержням без совпадения ничего не пишется."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Rebar",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

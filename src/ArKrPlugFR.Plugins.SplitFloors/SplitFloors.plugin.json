@@ -1,0 +1,20 @@
+{
+  "id": "split-floors",
+  "assembly": "ArKrPlugFR.Plugins.SplitFloors.dll",
+  "entryType": "ArKrPlugFR.Plugins.SplitFloors.SplitFloorsCommand",
+  "titles": {
+    "en": "Split floors into separate floors",
+    "ru": "Разделить полы на отдельные полы"
+  },
+  "descriptions": {
+    "en": "Turns every part of a flat floor into its own floor: each outer contour of the picked floors becomes a floor with the openings it holds, on the same level and with the same type, height offset, structural flag and workset.",
+    "ru": "Превращает каждую часть плоского пола в отдельный пол: каждый внешний контур выбранных полов становится полом со своими проёмами, на том же уровне и с тем же типом, отметкой, признаком несущей конструкции и рабочим набором."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Floors",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

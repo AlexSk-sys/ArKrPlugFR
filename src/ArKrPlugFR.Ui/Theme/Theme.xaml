@@ -1,0 +1,14 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Single entry point for the design system: views merge this dictionary and
+        get the palette plus every control style.
+    -->
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Palette.xaml" />
+        <ResourceDictionary Source="Controls.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

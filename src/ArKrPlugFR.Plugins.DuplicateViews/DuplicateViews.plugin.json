@@ -1,0 +1,20 @@
+{
+  "id": "duplicate-views",
+  "assembly": "ArKrPlugFR.Plugins.DuplicateViews.dll",
+  "entryType": "ArKrPlugFR.Plugins.DuplicateViews.DuplicateViewsCommand",
+  "titles": {
+    "en": "Duplicate views",
+    "ru": "Дубликация видов"
+  },
+  "descriptions": {
+    "en": "Creates many copies of views, schedules and view templates in one action, with a copy count per item and an optional template for every copy.",
+    "ru": "Создаёт множество копий видов, ведомостей и шаблонов видов одним действием, с количеством копий для каждой позиции и необязательным шаблоном для копий."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Views",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

@@ -1,0 +1,63 @@
+<Project>
+
+  <!--
+    ArKrPlugFR — shared build properties.
+
+    Multi-version Revit support without a local Revit installation:
+    the Revit API reference assemblies come from the Nice3point.Revit.Api.*
+    NuGet packages, so `dotnet build -p:RevitVersion=2024` works on a clean
+    machine and on CI. Allowed values are declared in RevitVersions below;
+    anything else fails the build with a clear message.
+  -->
+
+  <PropertyGroup>
+    <RevitVersion Condition="'$(RevitVersion)' == ''">2022</RevitVersion>
+
+    <RevitApiPackageVersion Condition="'$(RevitVersion)' == '2020'">2020.2.90</RevitApiPackageVersion>
+    <RevitApiPackageVersion Condition="'$(RevitVersion)' == '2022'">2022.1.80</RevitApiPackageVersion>
+    <RevitApiPackageVersion Condition="'$(RevitVersion)' == '2024'">2024.3.60</RevitApiPackageVersion>
+
+    <RevitVersions>2020;2022;2024</RevitVersions>
+  </PropertyGroup>
+
+  <!--
+    Version symbols for the few places where the Revit API genuinely differs
+    between releases. Used sparingly: prefer a version-agnostic API when one
+    exists, and keep every #if inside the Compatibility folder.
+  -->
+  <PropertyGroup>
+    <DefineConstants Condition="'$(RevitVersion)' == '2020'">$(DefineConstants);REVIT_2020</DefineConstants>
+    <DefineConstants Condition="'$(RevitVersion)' == '2022'">$(DefineConstants);REVIT_2022</DefineConstants>
+    <DefineConstants Condition="'$(RevitVersion)' == '2024'">$(DefineConstants);REVIT_2024</DefineConstants>
+  </PropertyGroup>
+
+  <Target Name="ArKrPlugFR_ValidateRevitVersion" BeforeTargets="BeforeBuild">
+    <Error Condition="'$(RevitApiPackageVersion)' == ''"
+           Text="Unsupported RevitVersion '$(RevitVersion)'. Supported values: $(RevitVersions). Example: dotnet build -p:RevitVersion=2024" />
+  </Target>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Deterministic>true</Deterministic>
+    <NeutralLanguage>en</NeutralLanguage>
+
+    <Product>ArKrPlugFR</Product>
+    <Company>Aleksandr Shanin</Company>
+    <Authors>Aleksandr Shanin</Authors>
+    <Copyright>Copyright (c) Aleksandr Shanin</Copyright>
+    <VersionPrefix>0.1.0</VersionPrefix>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest</AnalysisLevel>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)artifacts\obj\$(MSBuildProjectName)\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)artifacts\bin\$(MSBuildProjectName)\</BaseOutputPath>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,84 @@
+<Window x:Class="ArKrPlugFR.Ui.Views.ToolWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="Height"
+        MinWidth="520"
+        MaxHeight="820"
+        Background="{DynamicResource SurfaceBrush}"
+        Foreground="{DynamicResource TextPrimaryBrush}"
+        FontFamily="{DynamicResource UiFontFamily}"
+        FontSize="{DynamicResource BodyFontSize}"
+        ShowInTaskbar="False"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ArKrPlugFR.Ui;component/Theme/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <!--
+        Shared shell for every plugin window: a header, the tool-specific body,
+        an optional report area and a footer. Plugins fill Body and Report
+        instead of designing their own chrome.
+    -->
+
+    <Grid Margin="18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,14">
+            <TextBlock Style="{DynamicResource TitleText}" Text="{Binding Title, RelativeSource={RelativeSource AncestorType=Window}}" />
+            <TextBlock Style="{DynamicResource CaptionText}"
+                       Margin="0,3,0,0"
+                       Text="{Binding Subtitle, RelativeSource={RelativeSource AncestorType=Window}}" />
+        </StackPanel>
+
+        <ContentPresenter Grid.Row="1"
+                          Content="{Binding Body, RelativeSource={RelativeSource AncestorType=Window}}" />
+
+        <Border x:Name="ReportPanel"
+                Grid.Row="2"
+                Margin="0,14,0,0"
+                Padding="10"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Visibility="Collapsed">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top"
+                           Style="{DynamicResource CaptionText}"
+                           Margin="0,0,0,6"
+                           Text="{Binding ReportCaption, RelativeSource={RelativeSource AncestorType=Window}}" />
+                <TextBox x:Name="ReportBox"
+                         Style="{DynamicResource ReportTextBox}"
+                         MinHeight="110"
+                         MaxHeight="260"
+                         Text="{Binding Report, RelativeSource={RelativeSource AncestorType=Window}, Mode=OneWay}" />
+            </DockPanel>
+        </Border>
+
+        <StackPanel Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="0,16,0,0">
+            <Button x:Name="CopyReportButton"
+                    Style="{DynamicResource SecondaryButton}"
+                    Margin="0,0,8,0"
+                    Content="Copy report"
+                    Visibility="Collapsed"
+                    Click="OnCopyReportClick" />
+            <Button Style="{DynamicResource PrimaryButton}" Content="Close" IsCancel="True" Click="OnCloseClick" />
+        </StackPanel>
+
+    </Grid>
+</Window>

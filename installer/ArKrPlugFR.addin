@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Revit add-in manifest for ArKrPlugFR.
+
+  Deployment: copy this file together with the assemblies published by
+  `scripts/pack.ps1` into
+
+      %APPDATA%\Autodesk\Revit\Addins\<release>\
+
+  The <Assembly> path is relative to this file, so the deployment is a single
+  folder and contains no machine-specific or user-specific path.
+
+  The same manifest is valid for Revit 2020, 2022 and 2024: the release folder
+  it is copied into selects the build, and each build targets the API reference
+  assemblies of that release.
+-->
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>ArKrPlugFR</Name>
+    <Assembly>ArKrPlugFR.Host.dll</Assembly>
+    <AddInId>489B54A8-BADB-41EA-9539-CF6982149D2D</AddInId>
+    <FullClassName>ArKrPlugFR.Host.App</FullClassName>
+    <VendorId>AKPF</VendorId>
+    <VendorDescription>ArKrPlugFR — independent BIM tools for Revit (architecture and structure)</VendorDescription>
+  </AddIn>
+</RevitAddIns>

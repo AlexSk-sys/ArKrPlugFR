@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>ArKrPlugFR.Plugins.SheetExport</RootNamespace>
+    <AssemblyName>ArKrPlugFR.Plugins.SheetExport</AssemblyName>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <!--
+    A tool is a folder: one assembly plus one manifest. It references the shared
+    Core (rules), Revit (API adapters and the command base class) and Ui (the result
+    window), and it never references another tool. The Windows Forms reference exists
+    for one thing only: the folder picker, which WPF does not offer.
+  -->
+
+  <ItemGroup>
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitApiPackageVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitApiPackageVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArKrPlugFR.Core\ArKrPlugFR.Core.csproj" />
+    <ProjectReference Include="..\ArKrPlugFR.Revit\ArKrPlugFR.Revit.csproj" />
+    <ProjectReference Include="..\ArKrPlugFR.Ui\ArKrPlugFR.Ui.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="SheetExport.plugin.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,168 @@
+<Window x:Class="ArKrPlugFR.Plugins.MarkStructures.MarkWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding WindowTitle}"
+        Width="640"
+        Height="600"
+        MinWidth="520"
+        MinHeight="480"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="{DynamicResource SurfaceBrush}"
+        Foreground="{DynamicResource TextPrimaryBrush}"
+        FontFamily="{DynamicResource UiFontFamily}"
+        FontSize="{DynamicResource BodyFontSize}"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ArKrPlugFR.Ui;component/Theme/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+
+            <Style x:Key="MarkField" TargetType="TextBox" BasedOn="{StaticResource FieldTextBox}">
+                <Setter Property="Width" Value="90" />
+                <Setter Property="Margin" Value="0,4,0,10" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Style="{DynamicResource TitleText}" Text="{Binding WindowTitle}" />
+            <TextBlock Style="{DynamicResource CaptionText}"
+                       Margin="0,3,0,0"
+                       TextWrapping="Wrap"
+                       Text="{Binding Subtitle}" />
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Padding="12"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4">
+            <StackPanel>
+                <CheckBox Foreground="{DynamicResource TextPrimaryBrush}"
+                          Content="{Binding OnlyEmptyText}"
+                          IsChecked="{Binding OnlyEmpty, Mode=TwoWay}" />
+
+                <TextBlock Margin="0,12,0,0"
+                           Style="{DynamicResource CaptionText}"
+                           Text="{Binding MarksCaption}" />
+
+                <Grid Margin="0,4,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding ColumnLabel}" />
+                        <TextBox Style="{StaticResource MarkField}"
+                                 Text="{Binding ColumnMark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding BeamLabel}" />
+                        <TextBox Style="{StaticResource MarkField}"
+                                 Text="{Binding BeamMark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding FloorLabel}" />
+                        <TextBox Style="{StaticResource MarkField}"
+                                 Text="{Binding FloorMark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding WallLabel}" />
+                        <TextBox Style="{StaticResource MarkField}"
+                                 Text="{Binding WallMark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding FoundationLabel}" />
+                        <TextBox Style="{StaticResource MarkField}"
+                                 Text="{Binding FoundationMark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding PileLabel}" />
+                        <TextBox Style="{StaticResource MarkField}"
+                                 Text="{Binding PileMark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </Grid>
+
+                <TextBlock Margin="0,4,0,0"
+                           Style="{DynamicResource CaptionText}"
+                           Text="{Binding SuffixesCaption}" />
+
+                <Grid Margin="0,4,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="16" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding ConcreteSuffixLabel}" />
+                        <TextBox Style="{StaticResource MarkField}"
+                                 Text="{Binding ConcreteSuffix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="2">
+                        <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding SteelSuffixLabel}" />
+                        <TextBox Style="{StaticResource MarkField}"
+                                 Text="{Binding SteelSuffix, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+
+        <TextBlock Grid.Row="2"
+                   Margin="0,8,0,0"
+                   Style="{DynamicResource CaptionText}"
+                   TextWrapping="Wrap"
+                   Text="{Binding Hint}" />
+
+        <Border Grid.Row="3"
+                Margin="0,10,0,0"
+                Padding="10"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Visibility="{Binding HasReport, Converter={StaticResource BoolToVisibility}}">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top"
+                           Margin="0,0,0,6"
+                           Style="{DynamicResource CaptionText}"
+                           Text="{Binding ReportCaption}" />
+                <TextBox Style="{DynamicResource ReportTextBox}"
+                         MinHeight="64"
+                         MaxHeight="150"
+                         Text="{Binding Report, Mode=OneWay}" />
+            </DockPanel>
+        </Border>
+
+        <StackPanel Grid.Row="4"
+                    Margin="0,12,0,0"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Style="{DynamicResource PrimaryButton}"
+                    Margin="0,0,8,0"
+                    Content="{Binding ApplyText}"
+                    Click="OnApplyClick" />
+            <Button Style="{DynamicResource SecondaryButton}"
+                    Content="{Binding Text.Close}"
+                    IsCancel="True"
+                    Click="OnCloseClick" />
+        </StackPanel>
+    </Grid>
+</Window>

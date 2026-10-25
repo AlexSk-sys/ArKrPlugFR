@@ -1,0 +1,20 @@
+{
+  "id": "reassign-rebar",
+  "assembly": "ArKrPlugFR.Plugins.ReassignRebar.dll",
+  "entryType": "ArKrPlugFR.Plugins.ReassignRebar.ReassignRebarCommand",
+  "titles": {
+    "en": "Reassign rebar",
+    "ru": "Переназначить арматуру"
+  },
+  "descriptions": {
+    "en": "Attaches the picked rebar to the picked column, wall, beam or floor: real bars are re-hosted, bars that arrived from IFC get the host's mark, bars inside systems are reported and skipped.",
+    "ru": "Привязывает выбранную арматуру к выбранной колонне, стене, балке или перекрытию: обычные стержни меняют основу, арматура из IFC получает марку основы, стержни в системах пропускаются с отчётом."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Rebar",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

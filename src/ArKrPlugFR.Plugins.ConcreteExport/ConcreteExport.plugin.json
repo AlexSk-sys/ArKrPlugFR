@@ -1,0 +1,20 @@
+{
+  "id": "concrete-export",
+  "assembly": "ArKrPlugFR.Plugins.ConcreteExport.dll",
+  "entryType": "ArKrPlugFR.Plugins.ConcreteExport.ConcreteExportCommand",
+  "titles": {
+    "en": "Export concrete elements",
+    "ru": "Экспорт бетонных конструкций"
+  },
+  "descriptions": {
+    "en": "Writes the concrete structures of the project or of the selection into a comma-separated file: category, family, type, level, materials, volume, sizes and mark — the table a cost estimate or a model-training pipeline reads.",
+    "ru": "Записывает бетонные конструкции проекта или выделения в файл с разделителями-запятыми: категория, семейство, тип, этаж, материалы, объём, габариты и марка — таблица для сметы или конвейера обучения модели."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Data",
+    "buttonSize": "large",
+    "order": 40
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

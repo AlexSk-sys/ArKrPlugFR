@@ -1,0 +1,20 @@
+{
+  "id": "schedule-header-text",
+  "assembly": "ArKrPlugFR.Plugins.ScheduleHeaderText.dll",
+  "entryType": "ArKrPlugFR.Plugins.ScheduleHeaderText.ScheduleHeaderTextCommand",
+  "titles": {
+    "en": "Text in a schedule header",
+    "ru": "Текст в заголовке спецификации"
+  },
+  "descriptions": {
+    "en": "Writes a value into the header of a schedule — taken from the elements the schedule lists or typed in the window — so a designation lives in one place and not two.",
+    "ru": "Записывает значение в заголовок спецификации — из элементов, которые она перечисляет, или введённое в окне, — чтобы обозначение жило в одном месте, а не в двух."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Schedules",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

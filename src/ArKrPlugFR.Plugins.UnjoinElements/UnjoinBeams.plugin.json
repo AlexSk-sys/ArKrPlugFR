@@ -1,0 +1,20 @@
+{
+  "id": "unjoin-beams",
+  "assembly": "ArKrPlugFR.Plugins.UnjoinElements.dll",
+  "entryType": "ArKrPlugFR.Plugins.UnjoinElements.UnjoinBeamsCommand",
+  "titles": {
+    "en": "Unjoin beams",
+    "ru": "Отсоединить балки"
+  },
+  "descriptions": {
+    "en": "Removes the cuts that beams make in the selected walls.",
+    "ru": "Убирает вырезы балок в выделенных стенах."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Walls",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

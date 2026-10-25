@@ -1,0 +1,20 @@
+{
+  "id": "sheet-browser",
+  "assembly": "ArKrPlugFR.Plugins.SheetBrowser.dll",
+  "entryType": "ArKrPlugFR.Plugins.SheetBrowser.SheetBrowserCommand",
+  "titles": {
+    "en": "Sheet tree from the project browser",
+    "ru": "Дерево листов из браузера проекта"
+  },
+  "descriptions": {
+    "en": "Shows every sheet of the project under the folders of the active browser scheme, ordered the way the scheme orders them, and copies the path of any row as Group → Subgroup → Sheet.",
+    "ru": "Показывает все листы проекта под папками активной схемы браузера, в порядке схемы, и копирует путь любой строки в виде «Группа → Подгруппа → Лист»."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Sheets",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

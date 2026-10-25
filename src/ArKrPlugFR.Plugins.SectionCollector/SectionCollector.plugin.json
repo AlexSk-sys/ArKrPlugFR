@@ -1,0 +1,20 @@
+{
+  "id": "section-collector",
+  "assembly": "ArKrPlugFR.Plugins.SectionCollector.dll",
+  "entryType": "ArKrPlugFR.Plugins.SectionCollector.SectionCollectorCommand",
+  "titles": {
+    "en": "Collect sections",
+    "ru": "Сбор сечений"
+  },
+  "descriptions": {
+    "en": "Collects the concrete columns, walls, floors and beams of the 3D view, groups them by level, category and section read from the type names, selects them all in the model and copies the report to the clipboard.",
+    "ru": "Собирает бетонные колонны, стены, перекрытия и балки 3D-вида, группирует их по этажам, категориям и сечениям из имён типоразмеров, выделяет все элементы в модели и копирует отчёт в буфер обмена."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Sections",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

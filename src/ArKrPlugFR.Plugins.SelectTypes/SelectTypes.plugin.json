@@ -1,0 +1,20 @@
+{
+  "id": "select-types",
+  "assembly": "ArKrPlugFR.Plugins.SelectTypes.dll",
+  "entryType": "ArKrPlugFR.Plugins.SelectTypes.SelectTypesCommand",
+  "titles": {
+    "en": "Select elements by family type",
+    "ru": "Выделить элементы по типоразмеру"
+  },
+  "descriptions": {
+    "en": "Finds the family types of the project — all of them, the placed ones or the ones visible in the current view — and selects the instances of the ticked types in the model.",
+    "ru": "Находит типоразмеры семейств проекта — все, размещённые в модели или видимые на текущем виде — и выделяет экземпляры отмеченных типов в модели."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Families",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

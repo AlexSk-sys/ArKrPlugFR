@@ -1,0 +1,20 @@
+{
+  "id": "hide-analytical-model",
+  "assembly": "ArKrPlugFR.Plugins.AnalyticalVisibility.dll",
+  "entryType": "ArKrPlugFR.Plugins.AnalyticalVisibility.HideAnalyticalModelCommand",
+  "titles": {
+    "en": "Hide the analytical model",
+    "ru": "Скрыть аналитическую модель"
+  },
+  "descriptions": {
+    "en": "Hides the analytical model of the bearing structures in the model views, without deleting anything: the analytical elements, their loads and their boundary conditions stay in the project.",
+    "ru": "Скрывает аналитическую модель несущих конструкций на видах модели, ничего не удаляя: аналитические элементы, их нагрузки и граничные условия остаются в проекте."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Loads",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

@@ -1,0 +1,143 @@
+<Window x:Class="ArKrPlugFR.Plugins.CompareParameters.CompareWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding WindowTitle}"
+        Width="780"
+        Height="640"
+        MinWidth="620"
+        MinHeight="480"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="{DynamicResource SurfaceBrush}"
+        Foreground="{DynamicResource TextPrimaryBrush}"
+        FontFamily="{DynamicResource UiFontFamily}"
+        FontSize="{DynamicResource BodyFontSize}"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ArKrPlugFR.Ui;component/Theme/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Style="{DynamicResource TitleText}" Text="{Binding WindowTitle}" />
+            <TextBlock Style="{DynamicResource CaptionText}"
+                       Margin="0,3,0,0"
+                       TextWrapping="Wrap"
+                       Text="{Binding Subtitle}" />
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Padding="12"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Style="{DynamicResource PrimaryButton}"
+                            Margin="0,0,8,0"
+                            Content="{Binding PickSourceText}"
+                            Click="OnPickSourceClick" />
+                    <Button Style="{DynamicResource PrimaryButton}"
+                            Content="{Binding PickTargetText}"
+                            Click="OnPickTargetClick" />
+                </StackPanel>
+
+                <TextBlock Margin="0,10,0,0"
+                           Style="{DynamicResource CaptionText}"
+                           TextTrimming="CharacterEllipsis"
+                           Text="{Binding SourceLine}" />
+                <TextBlock Margin="0,3,0,0"
+                           Style="{DynamicResource CaptionText}"
+                           TextTrimming="CharacterEllipsis"
+                           Text="{Binding TargetLine}" />
+            </StackPanel>
+        </Border>
+
+        <Border Grid.Row="2"
+                Margin="0,10,0,0"
+                Padding="10"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,6">
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{DynamicResource CaptionText}"
+                               Text="{Binding ComparisonCaption}" />
+                    <TextBlock Margin="14,0,0,0"
+                               VerticalAlignment="Center"
+                               Style="{DynamicResource CaptionText}"
+                               Text="{Binding ComparisonLine}" />
+                </StackPanel>
+
+                <ListBox ItemsSource="{Binding Rows}"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Padding="0"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Margin="0,1" Text="{Binding}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="3"
+                Margin="0,10,0,0"
+                Padding="10"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Visibility="{Binding HasReport, Converter={StaticResource BoolToVisibility}}">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top"
+                           Margin="0,0,0,6"
+                           Style="{DynamicResource CaptionText}"
+                           Text="{Binding ReportCaption}" />
+                <TextBox Style="{DynamicResource ReportTextBox}"
+                         MinHeight="64"
+                         MaxHeight="140"
+                         Text="{Binding Report, Mode=OneWay}" />
+            </DockPanel>
+        </Border>
+
+        <DockPanel Grid.Row="4" Margin="0,12,0,0">
+            <Button DockPanel.Dock="Right"
+                    Style="{DynamicResource PrimaryButton}"
+                    Content="{Binding CopyText}"
+                    Click="OnCopyClick" />
+            <Button DockPanel.Dock="Right"
+                    Margin="0,0,8,0"
+                    Style="{DynamicResource SecondaryButton}"
+                    Content="{Binding Text.Close}"
+                    IsCancel="True"
+                    Click="OnCloseClick" />
+            <TextBlock Margin="0,0,12,0"
+                       VerticalAlignment="Center"
+                       Style="{DynamicResource CaptionText}"
+                       TextWrapping="Wrap"
+                       Text="{Binding Hint}" />
+        </DockPanel>
+    </Grid>
+</Window>

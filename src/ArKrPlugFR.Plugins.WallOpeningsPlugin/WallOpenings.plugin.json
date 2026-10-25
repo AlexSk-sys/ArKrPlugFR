@@ -1,0 +1,20 @@
+{
+  "id": "wall-openings",
+  "assembly": "ArKrPlugFR.Plugins.WallOpeningsPlugin.dll",
+  "entryType": "ArKrPlugFR.Plugins.WallOpeningsPlugin.WallOpeningsCommand",
+  "titles": {
+    "en": "Wall openings",
+    "ru": "Проёмы в стенах"
+  },
+  "descriptions": {
+    "en": "Cuts openings in the finish walls lining the selected walls, opposite the doors and windows standing in them; the options are remembered between sessions.",
+    "ru": "Вырезает проёмы в отделочных стенах, идущих вдоль выбранных, напротив расположенных в них дверей и окон; параметры запоминаются между сеансами."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Openings",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

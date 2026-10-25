@@ -1,0 +1,20 @@
+{
+  "id": "sheet-duplicator",
+  "assembly": "ArKrPlugFR.Plugins.SheetDuplicator.dll",
+  "entryType": "ArKrPlugFR.Plugins.SheetDuplicator.SheetDuplicatorCommand",
+  "titles": {
+    "en": "Duplicate sheets",
+    "ru": "Дубликация листов"
+  },
+  "descriptions": {
+    "en": "Duplicates selected sheets together with their views in one action, numbering the copies automatically.",
+    "ru": "Дублирует выбранные листы вместе с их видами одним действием, автоматически нумеруя копии."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Sheets",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

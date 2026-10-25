@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>ArKrPlugFR.Plugins.ViewTemplateTransfer</RootNamespace>
+    <AssemblyName>ArKrPlugFR.Plugins.ViewTemplateTransfer</AssemblyName>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <!--
+    A tool is a folder: one assembly plus one manifest. It references the shared
+    Core (rules), Revit (API adapters and the command base class) and Ui (window
+    shell), and it never references another tool.
+  -->
+
+  <ItemGroup>
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitApiPackageVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitApiPackageVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArKrPlugFR.Core\ArKrPlugFR.Core.csproj" />
+    <ProjectReference Include="..\ArKrPlugFR.Revit\ArKrPlugFR.Revit.csproj" />
+    <ProjectReference Include="..\ArKrPlugFR.Ui\ArKrPlugFR.Ui.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="ViewTemplateTransfer.plugin.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

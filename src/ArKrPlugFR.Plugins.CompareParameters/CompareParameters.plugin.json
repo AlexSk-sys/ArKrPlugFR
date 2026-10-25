@@ -1,0 +1,20 @@
+{
+  "id": "compare-parameters",
+  "assembly": "ArKrPlugFR.Plugins.CompareParameters.dll",
+  "entryType": "ArKrPlugFR.Plugins.CompareParameters.CompareParametersCommand",
+  "titles": {
+    "en": "Compare and copy element parameters",
+    "ru": "Сравнить и перенести параметры элементов"
+  },
+  "descriptions": {
+    "en": "Puts two elements side by side: lists the parameters of both, marks what differs, and copies the values of the source into the target — filling, never clearing.",
+    "ru": "Ставит два элемента рядом: показывает параметры обоих, отмечает различия и переносит значения источника в приёмник — только заполняет, никогда не очищает."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Data",
+    "buttonSize": "large",
+    "order": 30
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "cage-metres",
+  "assembly": "ArKrPlugFR.Plugins.CageMetres.dll",
+  "entryType": "ArKrPlugFR.Plugins.CageMetres.CageMetresCommand",
+  "titles": {
+    "en": "Rebar cage metres",
+    "ru": "Погонные метры каркаса"
+  },
+  "descriptions": {
+    "en": "Works out the running metres of a rebar cage from its layout lines and its own parameters — longitudinal bars along the lines, inclined and transverse bars by their steps — and writes the total into the cage.",
+    "ru": "Считает погонные метры арматурного каркаса по его линиям раскладки и его параметрам — продольные по линиям, наклонные и поперечные по шагам — и записывает итог в каркас."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Rebar",
+    "buttonSize": "large",
+    "order": 40
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

@@ -1,0 +1,38 @@
+## Build output
+artifacts/
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.idea/
+.vscode/
+
+## NuGet
+packages/
+*.nupkg
+*.snupkg
+
+## Test artifacts
+[Tt]est[Rr]esult*/
+*.trx
+*.coverage
+coverage*.xml
+
+## Revit / local tooling
+*.addin.user
+*.rvt
+*.rfa
+*.rte
+
+## Secrets and local configuration
+.env
+.env.*
+!.env.example
+appsettings.local.json
+**/Local.props
+**/*.local.json
+
+## OS noise
+Thumbs.db
+desktop.ini

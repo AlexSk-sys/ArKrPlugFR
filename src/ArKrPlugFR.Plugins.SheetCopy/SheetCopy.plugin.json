@@ -1,0 +1,20 @@
+{
+  "id": "sheet-copy",
+  "assembly": "ArKrPlugFR.Plugins.SheetCopy.dll",
+  "entryType": "ArKrPlugFR.Plugins.SheetCopy.SheetCopyCommand",
+  "titles": {
+    "en": "Copy sheets",
+    "ru": "Копирование листов"
+  },
+  "descriptions": {
+    "en": "Copies the sheets of this project with their placed views into the other projects that are open, under free sheet numbers.",
+    "ru": "Копирует листы этого проекта вместе с размещёнными на них видами в другие открытые проекты, подставляя свободные номера листов."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Sheets",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

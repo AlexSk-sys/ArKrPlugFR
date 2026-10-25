@@ -1,0 +1,20 @@
+{
+  "id": "cut-holes-in-concrete",
+  "assembly": "ArKrPlugFR.Plugins.CutHolesInConcrete.dll",
+  "entryType": "ArKrPlugFR.Plugins.CutHolesInConcrete.CutHolesInConcreteCommand",
+  "titles": {
+    "en": "Openings through concrete",
+    "ru": "Отверстия в бетоне"
+  },
+  "descriptions": {
+    "en": "Cuts openings in concrete walls, floors and columns where the equipment and services of a linked model pass through them; nothing is loaded into the project and the link is never changed.",
+    "ru": "Вырезает отверстия в бетонных стенах, перекрытиях и колоннах в местах, где через них проходит оборудование и коммуникации из связанной модели; ничего не загружается в проект, связь не изменяется."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Openings",
+    "buttonSize": "large",
+    "order": 30
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

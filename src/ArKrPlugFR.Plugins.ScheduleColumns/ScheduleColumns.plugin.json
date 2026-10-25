@@ -1,0 +1,20 @@
+{
+  "id": "schedule-columns",
+  "assembly": "ArKrPlugFR.Plugins.ScheduleColumns.dll",
+  "entryType": "ArKrPlugFR.Plugins.ScheduleColumns.ScheduleColumnsCommand",
+  "titles": {
+    "en": "Empty columns of a schedule",
+    "ru": "Пустые столбцы спецификации"
+  },
+  "descriptions": {
+    "en": "Hides the columns of a schedule whose every row is empty or zero, and shows the hidden columns that carry values again, so the schedule follows its content.",
+    "ru": "Скрывает столбцы спецификации, в которых все строки пусты или равны нулю, и возвращает скрытые столбцы с данными, чтобы спецификация следовала своему содержанию."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Schedules",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

@@ -1,0 +1,244 @@
+<Window x:Class="ArKrPlugFR.Plugins.DuplicateTypeFinder.DuplicateTypeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding WindowTitle}"
+        Width="1060"
+        Height="660"
+        MinWidth="820"
+        MinHeight="480"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="{DynamicResource SurfaceBrush}"
+        Foreground="{DynamicResource TextPrimaryBrush}"
+        FontFamily="{DynamicResource UiFontFamily}"
+        FontSize="{DynamicResource BodyFontSize}"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ArKrPlugFR.Ui;component/Theme/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+
+            <Style x:Key="GridColumnHeader" TargetType="DataGridColumnHeader">
+                <Setter Property="Background" Value="{DynamicResource SurfaceOverlayBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+                <Setter Property="Padding" Value="7,5" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+                <Setter Property="BorderThickness" Value="0,0,1,1" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="FontSize" Value="{DynamicResource CaptionFontSize}" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+            </Style>
+
+            <Style x:Key="GridRow" TargetType="DataGridRow">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="{DynamicResource AccentMutedBrush}" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="GridCell" TargetType="DataGridCell">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Padding" Value="7,2" />
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+                <Setter Property="TextBlock.TextTrimming" Value="CharacterEllipsis" />
+            </Style>
+
+            <Style x:Key="Grid" TargetType="DataGrid">
+                <Setter Property="Background" Value="{DynamicResource SurfaceRaisedBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+                <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="RowBackground" Value="Transparent" />
+                <Setter Property="AlternatingRowBackground" Value="{DynamicResource SurfaceOverlayBrush}" />
+                <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource BorderBrush}" />
+                <Setter Property="GridLinesVisibility" Value="Horizontal" />
+                <Setter Property="HeadersVisibility" Value="Column" />
+                <Setter Property="AutoGenerateColumns" Value="False" />
+                <Setter Property="CanUserAddRows" Value="False" />
+                <Setter Property="CanUserDeleteRows" Value="False" />
+                <Setter Property="CanUserResizeRows" Value="False" />
+                <Setter Property="CanUserSortColumns" Value="False" />
+                <Setter Property="IsReadOnly" Value="True" />
+                <Setter Property="SelectionMode" Value="Extended" />
+                <Setter Property="SelectionUnit" Value="FullRow" />
+                <Setter Property="RowHeight" Value="23" />
+                <Setter Property="ColumnHeaderStyle" Value="{StaticResource GridColumnHeader}" />
+                <Setter Property="RowStyle" Value="{StaticResource GridRow}" />
+                <Setter Property="CellStyle" Value="{StaticResource GridCell}" />
+            </Style>
+
+            <DataTemplate x:Key="SelectCell">
+                <!--
+                    The tick is only an indicator. The click is handled by the grid,
+                    so a click anywhere in the row switches the tick on or off whatever
+                    the state of the cell is.
+                -->
+                <CheckBox IsChecked="{Binding IsSelected, Mode=OneWay}"
+                          IsEnabled="{Binding IsRemovable}"
+                          IsHitTestVisible="False"
+                          Focusable="False"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center" />
+            </DataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,12">
+            <TextBlock Style="{DynamicResource TitleText}" Text="{Binding WindowTitle}" />
+            <TextBlock Style="{DynamicResource CaptionText}"
+                       Margin="0,3,0,0"
+                       TextWrapping="Wrap"
+                       Text="{Binding Subtitle}" />
+        </StackPanel>
+
+        <TabControl Grid.Row="1" Background="Transparent" BorderThickness="0">
+            <TabItem Header="{Binding TypesTabHeader}">
+                <DockPanel Margin="0,10,0,0">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+                        <Button Style="{DynamicResource SecondaryButton}"
+                                Margin="0,0,8,0"
+                                Content="{Binding Text.SelectAll}"
+                                Click="OnSelectAllTypesClick" />
+                        <Button Style="{DynamicResource SecondaryButton}"
+                                Content="{Binding Text.ClearSelection}"
+                                Click="OnClearTypesClick" />
+                    </StackPanel>
+                    <DataGrid x:Name="TypeGrid"
+                              Style="{StaticResource Grid}"
+                              ItemsSource="{Binding TypeRows}"
+                              PreviewMouseLeftButtonDown="OnGridPreviewMouseLeftButtonDown"
+                              MouseDoubleClick="OnGridMouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn x:Name="TypeSelectColumn" Width="38" CellTemplate="{StaticResource SelectCell}" />
+                            <DataGridTextColumn x:Name="TypeFamilyColumn" Width="2*" Binding="{Binding Family}" />
+                            <DataGridTextColumn x:Name="TypeCategoryColumn" Width="*" Binding="{Binding Category}" />
+                            <DataGridTextColumn x:Name="TypeNameColumn" Width="1.6*" Binding="{Binding TypeName}" />
+                            <DataGridTextColumn x:Name="TypeKeptColumn" Width="1.6*" Binding="{Binding KeptTypeName}" />
+                            <DataGridTextColumn x:Name="TypeCountColumn" Width="80" Binding="{Binding Instances}" />
+                            <DataGridTextColumn x:Name="TypeStatusColumn" Width="170" Binding="{Binding Status}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="{Binding FamiliesTabHeader}">
+                <DockPanel Margin="0,10,0,0">
+                    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,8">
+                        <Button Style="{DynamicResource SecondaryButton}"
+                                Margin="0,0,8,0"
+                                Content="{Binding Text.SelectAll}"
+                                Click="OnSelectAllFamiliesClick" />
+                        <Button Style="{DynamicResource SecondaryButton}"
+                                Content="{Binding Text.ClearSelection}"
+                                Click="OnClearFamiliesClick" />
+                    </StackPanel>
+                    <DataGrid x:Name="FamilyGrid"
+                              Style="{StaticResource Grid}"
+                              ItemsSource="{Binding FamilyRows}"
+                              PreviewMouseLeftButtonDown="OnGridPreviewMouseLeftButtonDown"
+                              MouseDoubleClick="OnGridMouseDoubleClick">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn x:Name="FamilySelectColumn" Width="38" CellTemplate="{StaticResource SelectCell}" />
+                            <DataGridTextColumn x:Name="FamilyFamilyColumn" Width="2*" Binding="{Binding Family}" />
+                            <DataGridTextColumn x:Name="FamilyCategoryColumn" Width="*" Binding="{Binding Category}" />
+                            <DataGridTextColumn x:Name="FamilyKeptColumn" Width="2*" Binding="{Binding KeptFamily}" />
+                            <DataGridTextColumn x:Name="FamilyMatchedColumn" Width="150" Binding="{Binding MatchedTypes}" />
+                            <DataGridTextColumn x:Name="FamilyCountColumn" Width="80" Binding="{Binding Instances}" />
+                            <DataGridTextColumn x:Name="FamilyStatusColumn" Width="170" Binding="{Binding Status}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="{Binding NearTabHeader}">
+                <DockPanel Margin="0,10,0,0">
+                    <TextBlock DockPanel.Dock="Top"
+                               Style="{DynamicResource CaptionText}"
+                               Margin="0,0,0,8"
+                               TextWrapping="Wrap"
+                               Text="{Binding NearIntro}"
+                               Visibility="{Binding HasNearRows, Converter={StaticResource BoolToVisibility}}" />
+                    <DataGrid x:Name="NearGrid"
+                              Style="{StaticResource Grid}"
+                              ItemsSource="{Binding NearRows}"
+                              SelectionMode="Single">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn x:Name="NearFamilyColumn" Width="2*" Binding="{Binding Family}" />
+                            <DataGridTextColumn x:Name="NearFirstColumn" Width="2*" Binding="{Binding FirstType}" />
+                            <DataGridTextColumn x:Name="NearSecondColumn" Width="2*" Binding="{Binding SecondType}" />
+                            <DataGridTextColumn x:Name="NearDifferenceColumn" Width="170" Binding="{Binding Difference}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+        </TabControl>
+
+        <Border Grid.Row="2"
+                Margin="0,12,0,0"
+                Padding="10"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Visibility="{Binding HasReport, Converter={StaticResource BoolToVisibility}}">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top"
+                           Style="{DynamicResource CaptionText}"
+                           Margin="0,0,0,6"
+                           Text="{Binding ReportCaption}" />
+                <TextBox Style="{DynamicResource ReportTextBox}"
+                         MinHeight="80"
+                         MaxHeight="160"
+                         Text="{Binding Report, Mode=OneWay}" />
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Row="3" Margin="0,14,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                <TextBlock Style="{DynamicResource CaptionText}"
+                           TextWrapping="Wrap"
+                           Text="{Binding Text.ZoomHint}" />
+                <TextBlock Style="{DynamicResource CaptionText}"
+                           TextWrapping="Wrap"
+                           Text="{Binding Text.UsedHint}" />
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                <Button Style="{DynamicResource SecondaryButton}"
+                        Margin="0,0,8,0"
+                        Content="{Binding Text.CopyList}"
+                        Click="OnCopyClick" />
+                <Button Style="{DynamicResource PrimaryButton}"
+                        Margin="0,0,8,0"
+                        Content="{Binding DeleteButtonText}"
+                        Click="OnDeleteClick" />
+                <Button Style="{DynamicResource SecondaryButton}"
+                        Content="{Binding Text.Close}"
+                        IsCancel="True"
+                        Click="OnCloseClick" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

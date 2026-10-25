@@ -1,0 +1,20 @@
+# Normalise line endings in the repository.
+#
+# Everything is stored with LF so that the history is identical on Windows,
+# macOS and Linux, and a Windows checkout does not turn every file into a
+# modified file. Editors are told the same rule through .editorconfig.
+* text=auto eol=lf
+
+# Scripts that Windows executes directly keep CRLF.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Binary assets must never be normalised.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.zip binary
+*.rvt binary
+*.rfa binary

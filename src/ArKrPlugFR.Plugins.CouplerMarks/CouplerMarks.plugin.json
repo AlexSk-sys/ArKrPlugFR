@@ -1,0 +1,20 @@
+{
+  "id": "coupler-marks",
+  "assembly": "ArKrPlugFR.Plugins.CouplerMarks.dll",
+  "entryType": "ArKrPlugFR.Plugins.CouplerMarks.CouplerMarksCommand",
+  "titles": {
+    "en": "Mark rebar couplers from the nearest bar",
+    "ru": "Промаркировать соединители по ближайшему стержню"
+  },
+  "descriptions": {
+    "en": "Finds the bar nearest to every picked coupler and writes the mark and the category of the bar's host into two parameters of the coupler, so the schedule of couplers fills itself.",
+    "ru": "Находит ближайший стержень для каждого выбранного соединителя и записывает марку и категорию его основы в два параметра соединителя, чтобы ведомость соединителей заполнялась сама."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Rebar",
+    "buttonSize": "large",
+    "order": 20
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

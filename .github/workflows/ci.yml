@@ -1,0 +1,100 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+jobs:
+  test:
+    name: Domain tests
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore
+        run: dotnet restore ArKrPlugFR.sln
+
+      - name: Test
+        run: dotnet test tests/ArKrPlugFR.Core.Tests/ArKrPlugFR.Core.Tests.csproj --configuration Release --nologo --logger "trx;LogFileName=domain-tests.trx" --results-directory artifacts/test-results
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: domain-test-results
+          path: artifacts/test-results
+
+  build-revit:
+    name: Build for Revit ${{ matrix.revit }}
+    runs-on: windows-latest
+    needs: test
+
+    strategy:
+      fail-fast: false
+      matrix:
+        revit: [ '2020', '2022', '2024' ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      # The Revit API comes from NuGet reference assemblies, so this job does not
+      # need a Revit installation. The build is warning-free by contract.
+      - name: Pack
+        shell: pwsh
+        run: ./scripts/pack.ps1 -RevitVersion ${{ matrix.revit }}
+
+      # Windows PowerShell is used because WPF needs a single-threaded apartment.
+      - name: UI smoke test
+        shell: powershell
+        run: ./scripts/smoke-ui.ps1 -Configuration Release -RevitVersion ${{ matrix.revit }}
+
+      - name: Upload deployment
+        uses: actions/upload-artifact@v4
+        with:
+          name: ArKrPlugFR-revit-${{ matrix.revit }}
+          path: artifacts/deploy/${{ matrix.revit }}
+
+  guard:
+    name: Guard unsupported Revit version
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      # Passing an unsupported release must fail loudly instead of silently
+      # building against an arbitrary API version.
+      - name: Expect a failure for Revit 2021
+        shell: pwsh
+        run: |
+          dotnet build src/ArKrPlugFR.Revit/ArKrPlugFR.Revit.csproj -p:RevitVersion=2021 --nologo
+          if ($LASTEXITCODE -eq 0) {
+            Write-Error "The build unexpectedly succeeded for an unsupported Revit version."
+            exit 1
+          }

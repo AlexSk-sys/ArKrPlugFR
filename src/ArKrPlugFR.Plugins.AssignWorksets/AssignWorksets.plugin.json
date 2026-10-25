@@ -1,0 +1,20 @@
+{
+  "id": "assign-worksets",
+  "assembly": "ArKrPlugFR.Plugins.AssignWorksets.dll",
+  "entryType": "ArKrPlugFR.Plugins.AssignWorksets.AssignWorksetsCommand",
+  "titles": {
+    "en": "Assign elements to worksets",
+    "ru": "Распределить элементы по рабочим наборам"
+  },
+  "descriptions": {
+    "en": "Puts the model elements into worksets by ordered rules: by category, by family or type prefix, or by the value of a parameter; missing worksets are created in the same step.",
+    "ru": "Раскладывает элементы модели по рабочим наборам по упорядоченным правилам: по категории, по префиксу семейства или типа, или по значению параметра; отсутствующие наборы создаются там же."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Worksets",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "duplicate-type-finder",
+  "assembly": "ArKrPlugFR.Plugins.DuplicateTypeFinder.dll",
+  "entryType": "ArKrPlugFR.Plugins.DuplicateTypeFinder.DuplicateTypeFinderCommand",
+  "titles": {
+    "en": "Duplicate types",
+    "ru": "Дубликаты типов"
+  },
+  "descriptions": {
+    "en": "Finds family types and families that repeat what the project already has, and removes the unused ones.",
+    "ru": "Находит типы и семейства, повторяющие уже имеющиеся в проекте, и удаляет неиспользуемые."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Families",
+    "buttonSize": "large",
+    "order": 30
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "align-to-grids",
+  "assembly": "ArKrPlugFR.Plugins.AlignToGrids.dll",
+  "entryType": "ArKrPlugFR.Plugins.AlignToGrids.AlignToGridsCommand",
+  "titles": {
+    "en": "Align columns to grids",
+    "ru": "Выровнять колонны по осям"
+  },
+  "descriptions": {
+    "en": "Pulls the picked columns exactly onto the picked grids: a column lands on the nearest axis within the capture distance, or on the crossing of two axes; groups are skipped.",
+    "ru": "Подтягивает выбранные колонны точно на выбранные оси: колонна встаёт на ближайшую ось в пределах захвата или на пересечение двух осей; элементы в группах пропускаются."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Grids",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

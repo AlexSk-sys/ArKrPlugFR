@@ -1,0 +1,20 @@
+{
+  "id": "transfer-parameters",
+  "assembly": "ArKrPlugFR.Plugins.TransferParameters.dll",
+  "entryType": "ArKrPlugFR.Plugins.TransferParameters.TransferParametersCommand",
+  "titles": {
+    "en": "Transfer parameters",
+    "ru": "Перенос параметров"
+  },
+  "descriptions": {
+    "en": "Three transfers in one window: one value onto the ticked sheets, the layer build-up of a wall or floor into a text parameter, and the value of a room onto the structures around it.",
+    "ru": "Три переноса в одном окне: одно значение на отмеченные листы, слоистая конструкция стены или перекрытия в текстовый параметр и значение помещения на окружающие его конструкции."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Data",
+    "buttonSize": "large",
+    "order": 10
+  },
+  "supportedRevitVersions": [ "2020", "2022", "2024" ]
+}

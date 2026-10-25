@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <RootNamespace>ArKrPlugFR.Revit</RootNamespace>
+    <AssemblyName>ArKrPlugFR.Revit</AssemblyName>
+  </PropertyGroup>
+
+  <!--
+    The Revit API is referenced through reference assemblies, not through a
+    local Revit installation. The version is selected by RevitVersion:
+
+        dotnet build -p:RevitVersion=2020   -> 2020.2.90 (net47)
+        dotnet build -p:RevitVersion=2022   -> 2022.1.80 (net48)
+        dotnet build -p:RevitVersion=2024   -> 2024.3.60 (net48)
+
+    The packages are reference-only (lib/ and ref/ carry RevitAPI.dll), so they
+    must never be copied to the output folder next to the plugin, otherwise the
+    plugin would load a second copy of the API into Revit's AppDomain.
+    Revit already provides RevitAPI.dll and RevitAPIUI.dll at runtime.
+  -->
+
+  <ItemGroup>
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitApiPackageVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Nice3point.Revit.Api.RevitAPIUI" Version="$(RevitApiPackageVersion)">
+      <PrivateAssets>all</PrivateAssets>
+      <ExcludeAssets>runtime</ExcludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArKrPlugFR.Core\ArKrPlugFR.Core.csproj" />
+  </ItemGroup>
+
+</Project>

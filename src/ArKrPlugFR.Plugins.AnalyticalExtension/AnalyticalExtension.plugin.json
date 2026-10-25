@@ -1,0 +1,20 @@
+{
+  "id": "analytical-extension",
+  "assembly": "ArKrPlugFR.Plugins.AnalyticalExtension.dll",
+  "entryType": "ArKrPlugFR.Plugins.AnalyticalExtension.AnalyticalExtensionCommand",
+  "titles": {
+    "en": "Extend the analytical model up",
+    "ru": "Продление аналитической модели вверх"
+  },
+  "descriptions": {
+    "en": "Extends the analytical model of the picked columns and walls up to the nearest floor or beam above them, so no member of the calculation model stops in the air.",
+    "ru": "Продлевает аналитическую модель выбранных колонн и стен вверх до ближайшего перекрытия или балки, чтобы ни один элемент расчётной схемы не обрывался в пустоте."
+  },
+  "ribbon": {
+    "tab": "ArKrPlugFR",
+    "panel": "Loads",
+    "buttonSize": "large",
+    "order": 50
+  },
+  "supportedRevitVersions": [ "2022", "2024" ]
+}

@@ -1,0 +1,173 @@
+<Window x:Class="ArKrPlugFR.Plugins.SelectTypes.SelectTypesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding WindowTitle}"
+        Width="760"
+        Height="680"
+        MinWidth="600"
+        MinHeight="480"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
+        Background="{DynamicResource SurfaceBrush}"
+        Foreground="{DynamicResource TextPrimaryBrush}"
+        FontFamily="{DynamicResource UiFontFamily}"
+        FontSize="{DynamicResource BodyFontSize}"
+        UseLayoutRounding="True"
+        TextOptions.TextFormattingMode="Display">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ArKrPlugFR.Ui;component/Theme/Theme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <BooleanToVisibilityConverter x:Key="BoolToVisibility" />
+
+            <Style x:Key="TreeNode" TargetType="TreeViewItem">
+                <Setter Property="Foreground" Value="{DynamicResource TextPrimaryBrush}" />
+                <Setter Property="IsExpanded" Value="{Binding IsExpanded, Mode=TwoWay}" />
+                <Setter Property="Padding" Value="1" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Margin="0,0,0,10">
+            <TextBlock Style="{DynamicResource TitleText}" Text="{Binding WindowTitle}" />
+            <TextBlock Style="{DynamicResource CaptionText}"
+                       Margin="0,3,0,0"
+                       TextWrapping="Wrap"
+                       Text="{Binding Subtitle}" />
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                Padding="12"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="14" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding ScopeCaption}" />
+                    <ComboBox Margin="0,4,0,0"
+                              ItemsSource="{Binding ScopeOptions}"
+                              SelectedIndex="{Binding ScopeIndex, Mode=TwoWay}" />
+                    <TextBlock Margin="0,6,0,0"
+                               Style="{DynamicResource CaptionText}"
+                               TextWrapping="Wrap"
+                               Text="{Binding ScopeHint}"
+                               Visibility="{Binding HasScopeHint, Converter={StaticResource BoolToVisibility}}" />
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <TextBlock Style="{DynamicResource CaptionText}" Text="{Binding SearchCaption}" />
+                    <TextBox Margin="0,4,0,0"
+                             Style="{DynamicResource FieldTextBox}"
+                             Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Margin="0,6,0,0"
+                               Style="{DynamicResource CaptionText}"
+                               TextWrapping="Wrap"
+                               Text="{Binding SearchHint}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="2"
+                Margin="0,10,0,0"
+                Padding="10"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,6">
+                    <TextBlock VerticalAlignment="Center"
+                               Style="{DynamicResource CaptionText}"
+                               Text="{Binding TreeCaption}" />
+                    <TextBlock Margin="14,0,0,0"
+                               VerticalAlignment="Center"
+                               Style="{DynamicResource CaptionText}"
+                               Text="{Binding TypesLine}" />
+                    <Button Margin="14,0,0,0"
+                            Style="{DynamicResource SecondaryButton}"
+                            Content="{Binding TickAllText}"
+                            Click="OnTickAllClick" />
+                    <Button Margin="8,0,0,0"
+                            Style="{DynamicResource SecondaryButton}"
+                            Content="{Binding UntickAllText}"
+                            Click="OnUntickAllClick" />
+                </StackPanel>
+
+                <TreeView ItemsSource="{Binding Categories}"
+                          Background="Transparent"
+                          BorderThickness="0"
+                          Foreground="{DynamicResource TextPrimaryBrush}"
+                          ItemContainerStyle="{StaticResource TreeNode}">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding Children}">
+                            <StackPanel Orientation="Horizontal" Margin="0,1">
+                                <CheckBox VerticalAlignment="Center"
+                                          IsChecked="{Binding IsChecked, Mode=TwoWay}" />
+                                <TextBlock Margin="6,0,0,0"
+                                           VerticalAlignment="Center"
+                                           Text="{Binding Title}" />
+                            </StackPanel>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="3"
+                Margin="0,10,0,0"
+                Padding="10"
+                Background="{DynamicResource SurfaceRaisedBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="4"
+                Visibility="{Binding HasReport, Converter={StaticResource BoolToVisibility}}">
+            <DockPanel>
+                <TextBlock DockPanel.Dock="Top"
+                           Margin="0,0,0,6"
+                           Style="{DynamicResource CaptionText}"
+                           Text="{Binding ReportCaption}" />
+                <TextBox Style="{DynamicResource ReportTextBox}"
+                         MinHeight="64"
+                         MaxHeight="140"
+                         Text="{Binding Report, Mode=OneWay}" />
+            </DockPanel>
+        </Border>
+
+        <DockPanel Grid.Row="4" Margin="0,12,0,0">
+            <Button DockPanel.Dock="Right"
+                    Style="{DynamicResource PrimaryButton}"
+                    Content="{Binding ApplyText}"
+                    Click="OnApplyClick" />
+            <Button DockPanel.Dock="Right"
+                    Margin="0,0,8,0"
+                    Style="{DynamicResource SecondaryButton}"
+                    Content="{Binding Text.Close}"
+                    IsCancel="True"
+                    Click="OnCloseClick" />
+            <TextBlock Margin="0,0,12,0"
+                       VerticalAlignment="Center"
+                       Style="{DynamicResource CaptionText}"
+                       TextWrapping="Wrap"
+                       Text="{Binding Hint}" />
+        </DockPanel>
+    </Grid>
+</Window>
