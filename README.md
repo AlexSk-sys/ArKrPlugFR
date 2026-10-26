@@ -1,7 +1,7 @@
 # ArKrPlugFR
 
 Independent BIM tooling for Autodesk Revit — architecture and structure (АР / КР) in one ribbon.
-Built as a clean-room reimplementation: written from functional specifications, not copied from any existing code base.
+Open source, MIT licensed, with small focused tools and a testable core.
 
 [English](#english) · [Русский](#русский)
 
@@ -19,15 +19,13 @@ The name is the scope: **Ar**chitecture + **Kr**onstruktsii (structural sections
 
 ### Why this repository exists
 
-Every line here was written for this repository. The tools were specified functionally, then
-implemented from scratch:
+The tools started as a way to remove repetitive model cleanup from real projects. Each tool
+does one job and can be switched off, so a team can adopt one workflow without changing its
+whole template.
 
-- no source code, resource, style, or naming convention was carried over from any previous
-  commercial code base;
-- no employer branding, internal standard, or machine-specific path is present;
-- no commercial third-party component is bundled or required;
-- third-party dependencies are only general-purpose open-source libraries (Json.NET, xUnit),
-  referenced through NuGet under their own licences.
+This repository is the public home for the code, tests and documentation, released under MIT.
+Third-party dependencies are limited to general-purpose open-source libraries such as Json.NET
+and xUnit, referenced through NuGet under their own licences.
 
 ### Highlights
 
@@ -244,15 +242,12 @@ ArKrPlugFR — набор небольших инструментов для Rev
 
 ### Зачем этот репозиторий
 
-Каждая строка написана для этого репозитория. Инструменты сначала описаны функционально, затем
-реализованы с нуля:
+Инструменты выросли из задачи убрать рутину из реальных проектов. Каждый инструмент делает
+одну вещь и его можно отключить, поэтому команда может внедрить один процесс, не меняя весь
+шаблон.
 
-- ни исходный код, ни ресурсы, ни оформление, ни соглашения об именовании не перенесены из
-  прежних коммерческих проектов;
-- нет брендинга работодателя, внутренних стандартов и путей конкретной машины;
-- нет проприетарных сторонних компонентов — ни в поставке, ни в зависимостях;
-- из сторонних библиотек используются только универсальные открытые (Json.NET, xUnit) через
-  NuGet, на условиях их собственных лицензий.
+Здесь лежат код, тесты и документация под MIT. Из сторонних библиотек используются только
+универсальные открытые (Json.NET, xUnit) через NuGet, на условиях их собственных лицензий.
 
 ### Ключевые решения
 
