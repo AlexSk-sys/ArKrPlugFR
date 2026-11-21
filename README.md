@@ -33,7 +33,7 @@ and xUnit, referenced through NuGet under their own licences.
 | --- | --- |
 | Layered architecture | Domain rules in a Revit-free assembly, API access in an adapter assembly, UI in a separate assembly, host that only composes them |
 | Multi-version support | One source tree builds against the Revit 2020, 2022 and 2024 APIs; version differences isolated in one folder |
-| Testable domain | 590+ unit tests run without Revit, because the rules never touch the Revit API |
+| Testable domain | 597 unit tests run without Revit, because the rules never touch the Revit API |
 | Manifest-driven UI | The ribbon is built from `*.plugin.json` files: adding a tool does not require recompiling the host |
 | Bilingual UI | Captions, tooltips and reports resolve from culture-keyed manifests with a safe fallback |
 | Operational care | Daily rolling logs with retention, per-user data paths, no writes inside the Revit installation |
